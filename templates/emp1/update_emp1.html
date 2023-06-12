@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Add Employee
+{% endblock title %}
+
+{% block body %}
+
+ <!-- ======= Header ======= -->
+ <header id="header" class="fixed-top ">
+  <div class="container d-flex align-items-center">
+
+    <h1 class="logo me-auto" ><a href="index.html">      <br>        </a></h1>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="/emp/">Home</a></li>
+        <li><a class="nav-link scrollto" href="/emp/#about">About</a></li>
+          <li><a class="nav-link scrollto" href="/emp/#services">Services</a></li>
+            
+          </li>
+          <li><a class="nav-link scrollto" href="/emp/#contact">Contact</a></li>
+          <li><a class="getstarted scrollto" href="/emp/#services">Get Started</a></li>
+  
+          
+        </li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->  
+
+
+
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <h1>Better Solutions For Your Employees</h1>
+          <h2>We are team of talented designers making CRM</h2>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="{%static '/assets/img/hero-img.png'%}" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+
+ <!-- ======= Contact Section ======= -->
+ <section id="update" class="contact">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Update Employee</h2>
+      
+    </div>
+
+    <div class="row">
+
+      
+
+      <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch">
+        
+        <div class="container">
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                <div class="card bg-dark text-white">
+                  <div class="card-body">
+                    <form action="/emp/do-update-emp/{{e.id}}" method="POST">
+                      {% csrf_token %}
+                        <div class="mb-3">
+                          <label for="name">Name</label>
+                          <input value={{e.name}} id="name" type="text" class="form-control" placeholder='Enter Employee Name' name='emp_name'>
+                        </div>
+      
+                        <div class="mb-3">
+                          <label for="id">id</label>
+                          <input value={{e.emp_id}} id="id" type="text" class="form-control" placeholder='Enter Employee id' name='emp_id'>
+                        </div>
+      
+                        <div class="mb-3">
+                          <label for="phone">Phone</label>
+                          <input value={{e.phone}} id="phone" type="text" class="form-control" placeholder='Enter Employee Phone' name='emp_phone'>
+                        </div>
+      
+                        <div class="mb-3">
+                          <label for="address">Address</label>
+                          <textarea  name="emp_address" id="address" rows="5" class="form-control" >{{e.address}}</textarea>
+                          
+                        </div>
+      
+                        <div class="mb-3 form-check">
+                          <label for="working">Working</label>
+                          <input {% if e.working %}checked{% endif %} id='working' type="checkbox" class='form-check-input' name='emp_working'>
+                        </div> 
+      
+      
+                        <div class="mb-3">
+                          <label for="department">department</label>
+                          <select  name="emp_department" id="department" class='form-control'>
+                            <option value="Computer Engg">Computer Engg</option>
+                            <option value="Mechanical Engg">Mechanical Engg</option>
+                            <option value="Electrical Engg">Electrical Engg</option>
+                            <option selected="selected">
+                              {{e.department}}
+                              </option>
+                          </select>
+                        </div>
+      
+                        <div class="container text-center">
+                          <button class="btn btn-success">
+                            Update Employee
+                          </button> 
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Contact Section -->
+
+
+
+
+{% endblock body %}
